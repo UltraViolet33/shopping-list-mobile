@@ -1,8 +1,17 @@
 import { View, Text, Button, StyleSheet } from "react-native";
+import { useState } from "react";
 
 export default Home = ({ navigation }) => {
-  const handleClick = () => {
-    navigation.push("AddProduct");
+  const [products, setProducts] = useState([
+    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+  ]);
+
+  const handleClick = (page, params = null) => {
+    navigation.push(page, params);
   };
 
   return (
@@ -11,8 +20,14 @@ export default Home = ({ navigation }) => {
         <Text style={styles.title}>Shopping List App</Text>
       </View>
       <View style={styles.menuContainer}>
-        <Button title="Ajouter un produit" onPress={handleClick} />
-        <Button title="Liste de produits" />
+        <Button
+          title="Ajouter un produit"
+          onPress={() => handleClick("AddProduct")}
+        />
+        <Button
+          title="Liste de produits"
+          onPress={() => handleClick("ProductList", { products })}
+        />
       </View>
     </View>
   );
