@@ -4,7 +4,7 @@ import Checkbox from "expo-checkbox";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 
-export default AddProduct = ({navigation}) => {
+export default AddProduct = ({ navigation }) => {
   const REGEX_NUMBER = /^[0-9]+$/;
 
   const [recurrent, setRecurrent] = useState(false);
@@ -50,8 +50,6 @@ export default AddProduct = ({navigation}) => {
     }
 
     tmpProduct.recurent = recurrent;
-    console.log(tmpProduct);
-
     navigation.push("Home");
   };
 
