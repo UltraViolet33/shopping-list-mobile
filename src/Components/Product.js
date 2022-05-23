@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Button from "./Button";
 
@@ -12,9 +13,14 @@ export default Product = ({ product, index }) => {
     <View style={styles.productContainer}>
       <Text style={styles.nameProduct}>{product.name}</Text>
       <View style={styles.infoContainer}>
-        {/* <View>
-          <Text style={styles.colorWhite}>Price : {product.price} €</Text>
-        </View> */}
+        <View>
+          <Text style={styles.colorWhite}>
+            Stock Minimal : {product.stockMin}
+          </Text>
+          {product.stockActual <= product.stockMin ? (
+            <Text>A acheter : {}</Text>
+          ) : null}
+        </View>
         <View>
           <Text style={styles.colorWhite}>
             Actual stock : {product.stockActual}

@@ -1,14 +1,19 @@
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default Home = ({ navigation }) => {
   const [products, setProducts] = useState([
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+    { name: "test", stockMin: 5, stockActual: 3, recurrent: false },
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
   ]);
+
+ 
+
+ 
 
   const handleClick = (page, params = null) => {
     navigation.push(page, params);
