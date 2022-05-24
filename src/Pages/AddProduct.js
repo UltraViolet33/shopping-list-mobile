@@ -3,10 +3,12 @@ import { Text, View, StyleSheet } from "react-native";
 import Checkbox from "expo-checkbox";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+import { useStore } from "../Context/Store";
+import { addProduct } from "../Context/ProductReducer";
 
 export default AddProduct = ({ navigation }) => {
+  const [, dispatch] = useStore();
   const REGEX_NUMBER = /^[0-9]+$/;
-
   const [recurrent, setRecurrent] = useState(false);
 
   const [product, setProduct] = useState({
@@ -37,7 +39,7 @@ export default AddProduct = ({ navigation }) => {
     console.log(tmpProduct);
   };
 
-  const addProduct = () => {
+  const addNewProduct = () => {
     const tmpProduct = { ...product };
     if (!tmpProduct.stockActual.match(REGEX_NUMBER)) {
       alert("Le stock Actuel doit être un nombre");
@@ -50,6 +52,7 @@ export default AddProduct = ({ navigation }) => {
     }
 
     tmpProduct.recurent = recurrent;
+    dispatch(addProduct(tmpProduct));
     navigation.push("Home");
   };
 
@@ -71,7 +74,7 @@ export default AddProduct = ({ navigation }) => {
           <Text style={styles.checkboxText}>Recurrent</Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Button style={styles.button} press={addProduct} title="VALIDER" />
+          <Button style={styles.button} press={addNewProduct} title="VALIDER" />
         </View>
       </View>
     </View>

@@ -1,7 +1,10 @@
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useState } from "react";
+import { useStore } from "../Context/Store";
 
 export default Home = ({ navigation }) => {
+  const { logo } = useStore();
+
   const [products, setProducts] = useState([
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
     { name: "test", stockMin: 5, stockActual: 3, recurrent: false },
@@ -17,7 +20,7 @@ export default Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Shopping List App</Text>
+        <Text style={styles.title}>Shopping List App {logo}</Text>
       </View>
       <View style={styles.menuContainer}>
         <Button

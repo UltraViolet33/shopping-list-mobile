@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Button from "./Button";
 
 export default Product = ({ product, index }) => {
+  
   const deleteProduct = () => {};
-
   const addStock = () => {};
-
   const removeStock = () => {};
 
   return (

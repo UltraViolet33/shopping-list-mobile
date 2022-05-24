@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Product from "../Components/Product";
+import { useStore } from "../Context/Store";
 
 export default ProductList = ({ navigation, route }) => {
-  const [products, setProducts] = useState(route.params.products);
+  // const [products, setProducts] = useState(route.params.products);
+
+  const [state] = useStore();
+  const { products } = state;
 
   return (
     <View style={styles.container}>
