@@ -5,16 +5,8 @@ import { useStore } from "../Context/Store";
 export default Home = ({ navigation }) => {
   const { logo } = useStore();
 
-  const [products, setProducts] = useState([
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 5, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-  ]);
-
-  const handleClick = (page, params = null) => {
-    navigation.push(page, params);
+  const handleClick = (page) => {
+    navigation.push(page);
   };
 
   return (
@@ -29,7 +21,11 @@ export default Home = ({ navigation }) => {
         />
         <Button
           title="Liste de produits"
-          onPress={() => handleClick("ProductList", { products })}
+          onPress={() => handleClick("ProductList")}
+        />
+        <Button
+          title="Liste de courses"
+          onPress={() => handleClick("ShoppingList")}
         />
       </View>
     </View>
@@ -53,7 +49,7 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     margin: 20,
-    flexDirection: "row",
+    flex: 0.3,
     justifyContent: "space-around",
   },
 });
