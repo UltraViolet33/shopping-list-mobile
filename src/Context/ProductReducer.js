@@ -2,12 +2,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { actions } from "./actions";
 
 export const initialState = {
-  products: [
-    { name: "testddd", stockMin: 2, stockActual: 3, recurrent: true },
-    { name: "test", stockMin: 5, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
-    { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
+  products: [],
+  stores: [
+    {
+      name: "lidl",
+      productPrice: [],
+    },
   ],
 };
 

@@ -36,6 +36,10 @@ export default AddProduct = ({ navigation }) => {
     setProduct(tmpProduct);
   };
 
+  const createID = () => {
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
+
   const addNewProduct = () => {
     const tmpProduct = { ...product };
 
@@ -59,6 +63,7 @@ export default AddProduct = ({ navigation }) => {
     }
 
     tmpProduct.recurrent = recurrent;
+    tmpProduct.id = createID();
     dispatch(addProduct(tmpProduct));
     navigation.push("Home");
   };

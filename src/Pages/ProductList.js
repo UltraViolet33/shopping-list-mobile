@@ -13,16 +13,29 @@ export default ProductList = ({ navigation, route }) => {
       </View>
       <ScrollView style={styles.scrolView}>
         <View>
-          {products.map((product, index) => {
-            return (
-              <Product
-                key={index}
-                index={index}
-                product={product}
-                navigation={navigation}
-              ></Product>
-            );
-          })}
+          {products.length > 0 ? (
+            products.map((product, index) => {
+              return (
+                <Product
+                  key={index}
+                  index={index}
+                  product={product}
+                  navigation={navigation}
+                ></Product>
+              );
+            })
+          ) : (
+            <Text
+              style={{
+                color: "white",
+                fontSize: 20,
+                textAlign: "center",
+                marginTop: 10,
+              }}
+            >
+              Aucun produits enregistrés
+            </Text>
+          )}
         </View>
       </ScrollView>
     </View>

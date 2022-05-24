@@ -13,6 +13,10 @@ export default ProductDetails = ({ route, navigation }) => {
     navigation.push("ProductList");
   };
 
+  const goToPricePage = () => {
+    navigation.push("AddPrice");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.nameProduct}>{product.name}</Text>
@@ -31,6 +35,11 @@ export default ProductDetails = ({ route, navigation }) => {
         <Button
           title="Supprimer"
           press={deleteProd}
+          styleBtn={{ backgroundColor: "red" }}
+        />
+        <Button
+          title="Ajouter un prix"
+          press={goToPricePage}
           styleBtn={{ backgroundColor: "red" }}
         />
       </View>
@@ -68,6 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   btnContainer: {
-    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 });
