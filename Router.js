@@ -4,6 +4,7 @@ import Home from "./src/Pages/Home";
 import AddProduct from "./src/Pages/AddProduct";
 import ProductList from "./src/Pages/ProductList";
 import ShoppingList from "./src/Pages/ShoppingList";
+import ProductDetails from "./src/Pages/ProductDetails";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { useStore } from "../Context/Store";
@@ -30,6 +31,8 @@ export const Router = () => {
         <Stack.Screen name="ProductList" component={ProductList} />
         <Stack.Screen name="AddProduct" component={AddProduct} />
         <Stack.Screen name="ShoppingList" component={ShoppingList} />
+        <Stack.Screen name="ProductDetails" component={ProductDetails} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

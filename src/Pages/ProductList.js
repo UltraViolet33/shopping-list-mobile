@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Product from "../Components/Product";
 import { useStore } from "../Context/Store";
 
 export default ProductList = ({ navigation, route }) => {
-  // const [products, setProducts] = useState(route.params.products);
-
   const [state] = useStore();
   const { products } = state;
 
@@ -18,7 +15,12 @@ export default ProductList = ({ navigation, route }) => {
         <View>
           {products.map((product, index) => {
             return (
-              <Product key={index} index={index} product={product}></Product>
+              <Product
+                key={index}
+                index={index}
+                product={product}
+                navigation={navigation}
+              ></Product>
             );
           })}
         </View>

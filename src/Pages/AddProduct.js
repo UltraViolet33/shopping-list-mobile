@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Checkbox from "expo-checkbox";
-import Input from "../Components/Input";
-import Button from "../Components/Button";
 import { useStore } from "../Context/Store";
 import { addProduct } from "../Context/ProductReducer";
+import Input from "../Components/Input";
+import Button from "../Components/Button";
 
 export default AddProduct = ({ navigation }) => {
   const [, dispatch] = useStore();
@@ -15,13 +15,12 @@ export default AddProduct = ({ navigation }) => {
     name: null,
     stockActual: null,
     stockMin: null,
-    recurent: false,
+    recurrent: false,
   });
 
   const setName = (name) => {
     const tmpProduct = { ...product };
     tmpProduct.name = name;
-    console.log(tmpProduct);
     setProduct(tmpProduct);
   };
 
@@ -29,14 +28,12 @@ export default AddProduct = ({ navigation }) => {
     const tmpProduct = { ...product };
     tmpProduct.stockActual = stock;
     setProduct(tmpProduct);
-    console.log(tmpProduct);
   };
 
   const setStockMin = (stockMin) => {
     const tmpProduct = { ...product };
     tmpProduct.stockMin = stockMin;
     setProduct(tmpProduct);
-    console.log(tmpProduct);
   };
 
   const addNewProduct = () => {
@@ -61,7 +58,7 @@ export default AddProduct = ({ navigation }) => {
       return false;
     }
 
-    tmpProduct.recurent = recurrent;
+    tmpProduct.recurrent = recurrent;
     dispatch(addProduct(tmpProduct));
     navigation.push("Home");
   };

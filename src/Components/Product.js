@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import Button from "./Button";
 import { useStore } from "../Context/Store";
 import { addStockActual, removeStockActual } from "../Context/ProductReducer";
+import Button from "./Button";
 
-export default Product = ({ product, index }) => {
+export default Product = ({ product, index, navigation }) => {
   const [, dispatch] = useStore();
-
   const [stock, setStock] = useState(product.stockActual);
   const [warning, setWarning] = useState(false);
 
@@ -18,7 +17,9 @@ export default Product = ({ product, index }) => {
     }
   }, [stock]);
 
-  const deleteProduct = () => {};
+  const handlePageDetails = () => {
+    navigation.push("ProductDetails", { product, index });
+  };
 
   const addStock = () => {
     const tmpStock = stock + 1;
@@ -62,7 +63,7 @@ export default Product = ({ product, index }) => {
       </View>
       <Button
         styleBtn={styles.btnDelete}
-        press={deleteProduct}
+        press={handlePageDetails}
         title="Details"
       ></Button>
     </View>

@@ -1,16 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-export const ADD_PRODUCT = "ADD_PRODUCT";
-
-export const ADD_STOCK_ACTUAL = "ADD_STOCK_ACTUAL";
-
-export const REMOVE_STOCK_ACTUAL = "REMOVE_STOCK_ACTUAL";
-
-export const REPLACE_STATE = "REPLACE_STATE";
+import { actions } from "./actions";
 
 export const initialState = {
   products: [
-    { name: "testddd", stockMin: 2, stockActual: 3, recurrent: false },
+    { name: "testddd", stockMin: 2, stockActual: 3, recurrent: true },
     { name: "test", stockMin: 5, stockActual: 3, recurrent: false },
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
     { name: "test", stockMin: 2, stockActual: 3, recurrent: false },
@@ -19,23 +12,28 @@ export const initialState = {
 };
 
 export const addProduct = (product) => ({
-  type: ADD_PRODUCT,
+  type: actions.ADD_PRODUCT,
   product,
 });
 
 export const addStockActual = (idProduct) => ({
-  type: ADD_STOCK_ACTUAL,
+  type: actions.ADD_STOCK_ACTUAL,
   idProduct,
 });
 
 export const removeStockActual = (idProduct) => ({
-  type: REMOVE_STOCK_ACTUAL,
+  type: actions.REMOVE_STOCK_ACTUAL,
   idProduct,
 });
 
 export const replaceState = (state) => ({
-  type: REPLACE_STATE,
+  type: actions.REPLACE_STATE,
   state,
+});
+
+export const deleteProduct = (index) => ({
+  type: actions.DELETE_PRODUCT,
+  index,
 });
 
 const saveState = (state) => {
@@ -46,28 +44,35 @@ const saveState = (state) => {
 
 export const productReducer = (state = initialState, action) => {
   const newState = { ...state };
-  if (action.type === ADD_PRODUCT) {
+  if (action.type === actions.ADD_PRODUCT) {
     newState.products = [...newState.products];
     newState.products.push(action.product);
     saveState(newState);
     return newState;
   }
 
-  if (action.type === ADD_STOCK_ACTUAL) {
+  if (action.type === actions.ADD_STOCK_ACTUAL) {
     newState.products = [...newState.products];
     newState.products[action.idProduct].stockActual += 1;
     saveState(newState);
     return newState;
   }
 
-  if (action.type === REMOVE_STOCK_ACTUAL) {
+  if (action.type === actions.REMOVE_STOCK_ACTUAL) {
     newState.products = [...newState.products];
     newState.products[action.idProduct].stockActual -= 1;
     saveState(newState);
     return newState;
   }
 
-  if (action.type === REPLACE_STATE) {
+  if (action.type === actions.DELETE_PRODUCT) {
+    newState.products = [...newState.products];
+    newState.products.splice(action.index, 1);
+    saveState(newState);
+    return newState;
+  }
+
+  if (action.type === actions.REPLACE_STATE) {
     return action.state;
   }
 };
