@@ -2,21 +2,26 @@ import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Button from "./Button";
 import { useStore } from "../Context/Store";
-import { addStockActual } from "../Context/ProductReducer";
+import { addStockActual, removeStockActual } from "../Context/ProductReducer";
 
 export default Product = ({ product, index }) => {
   const [, dispatch] = useStore();
 
   const [stock, setStock] = useState(product.stockActual);
-  
+
   const deleteProduct = () => {};
 
   const addStock = () => {
     const tmpStock = stock + 1;
     setStock(tmpStock);
-    dispatch(addStockActual(index))
+    dispatch(addStockActual(index));
   };
-  const removeStock = () => {};
+
+  const removeStock = () => {
+    const tmpStock = stock - 1;
+    setStock(tmpStock);
+    dispatch(removeStockActual(index));
+  };
 
   return (
     <View style={styles.productContainer}>
@@ -31,9 +36,7 @@ export default Product = ({ product, index }) => {
           ) : null}
         </View>
         <View>
-          <Text style={styles.colorWhite}>
-            Actual stock : {stock}
-          </Text>
+          <Text style={styles.colorWhite}>Actual stock : {stock}</Text>
           <View style={styles.btnContainer}>
             <Button
               styleBtn={styles.btnAdd}
