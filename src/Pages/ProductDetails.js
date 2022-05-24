@@ -27,11 +27,13 @@ export default ProductDetails = ({ route, navigation }) => {
           </Text>
         </View>
       </View>
-      <Button
-        title="Supprimer"
-        press={deleteProd}
-        styleBtn={{ backgroundColor: "red" }}
-      />
+      <View style={styles.btnContainer}>
+        <Button
+          title="Supprimer"
+          press={deleteProd}
+          styleBtn={{ backgroundColor: "red" }}
+        />
+      </View>
     </View>
   );
 };
@@ -64,5 +66,8 @@ const styles = StyleSheet.create({
   infos: {
     color: "white",
     fontSize: 15,
+  },
+  btnContainer: {
+    alignItems: "center",
   },
 });
