@@ -8,8 +8,17 @@ export const initialState = {
       name: "lidl",
       productPrice: [],
     },
+    {
+      name: "Auchan",
+      productPrice: [],
+    },
   ],
 };
+
+export const addPrice = (price) => ({
+  type: actions.ADD_PRICE,
+  price,
+});
 
 export const addProduct = (product) => ({
   type: actions.ADD_PRODUCT,
@@ -44,6 +53,7 @@ const saveState = (state) => {
 
 export const productReducer = (state = initialState, action) => {
   const newState = { ...state };
+
   if (action.type === actions.ADD_PRODUCT) {
     newState.products = [...newState.products];
     newState.products.push(action.product);
@@ -72,7 +82,12 @@ export const productReducer = (state = initialState, action) => {
     return newState;
   }
 
+  if (action.type === actions.ADD_PRICE) {
+    console.log(actions.price);
+  }
+
   if (action.type === actions.REPLACE_STATE) {
+    console.log(action.state);
     return action.state;
   }
 };

@@ -14,7 +14,8 @@ export default ProductDetails = ({ route, navigation }) => {
   };
 
   const goToPricePage = () => {
-    navigation.push("AddPrice");
+    const index = route.params.index;
+    navigation.push("AddPrice", { index });
   };
 
   return (

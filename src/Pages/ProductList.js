@@ -4,7 +4,7 @@ import { useStore } from "../Context/Store";
 
 export default ProductList = ({ navigation, route }) => {
   const [state] = useStore();
-  const { products } = state;
+  const products = state.products;
 
   return (
     <View style={styles.container}>
