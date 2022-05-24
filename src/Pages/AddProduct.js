@@ -41,6 +41,16 @@ export default AddProduct = ({ navigation }) => {
 
   const addNewProduct = () => {
     const tmpProduct = { ...product };
+
+    if (
+      tmpProduct.name === null ||
+      tmpProduct.stockActual === null ||
+      tmpProduct.stockMin === null
+    ) {
+      alert("Veuillez remplit tous les champs !");
+      return false;
+    }
+
     if (!tmpProduct.stockActual.match(REGEX_NUMBER)) {
       alert("Le stock Actuel doit être un nombre");
       return false;

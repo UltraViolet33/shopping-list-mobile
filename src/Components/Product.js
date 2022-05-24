@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Button from "./Button";
 import { useStore } from "../Context/Store";
@@ -8,6 +8,15 @@ export default Product = ({ product, index }) => {
   const [, dispatch] = useStore();
 
   const [stock, setStock] = useState(product.stockActual);
+  const [warning, setWarning] = useState(false);
+
+  useEffect(() => {
+    if (stock <= product.stockMin) {
+      setWarning(true);
+    } else {
+      setWarning(false);
+    }
+  }, [stock]);
 
   const deleteProduct = () => {};
 
@@ -27,12 +36,12 @@ export default Product = ({ product, index }) => {
     <View style={styles.productContainer}>
       <Text style={styles.nameProduct}>{product.name}</Text>
       <View style={styles.infoContainer}>
-        <View>
+        <View style={{ alignItems: "center" }}>
           <Text style={styles.colorWhite}>
             Stock Minimal : {product.stockMin}
           </Text>
-          {product.stockActual <= product.stockMin ? (
-            <Text>A acheter : {}</Text>
+          {warning ? (
+            <Button styleBtn={styles.btnRemove} title="!"></Button>
           ) : null}
         </View>
         <View>
@@ -72,6 +81,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
+  },
+  warning: {
+    backgroundColor: "#dd4840",
+    width: 40,
+    height: 40,
+    alignSelf: "center",
   },
   infoContainer: {
     flex: 1,

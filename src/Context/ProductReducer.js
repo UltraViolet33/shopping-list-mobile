@@ -1,8 +1,12 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export const ADD_PRODUCT = "ADD_PRODUCT";
 
 export const ADD_STOCK_ACTUAL = "ADD_STOCK_ACTUAL";
 
 export const REMOVE_STOCK_ACTUAL = "REMOVE_STOCK_ACTUAL";
+
+export const REPLACE_STATE = "REPLACE_STATE";
 
 export const initialState = {
   products: [
@@ -29,29 +33,41 @@ export const removeStockActual = (idProduct) => ({
   idProduct,
 });
 
+export const replaceState = (state) => ({
+  type: REPLACE_STATE,
+  state,
+});
+
+const saveState = (state) => {
+  AsyncStorage.setItem("Products", JSON.stringify(state))
+    .then(() => console.log("save ok"))
+    .catch((err) => console.log(err));
+};
+
 export const productReducer = (state = initialState, action) => {
+  const newState = { ...state };
   if (action.type === ADD_PRODUCT) {
-    return {
-      ...state,
-      products: state.products.concat(action.product),
-    };
+    newState.products = [...newState.products];
+    newState.products.push(action.product);
+    saveState(newState);
+    return newState;
   }
 
   if (action.type === ADD_STOCK_ACTUAL) {
-    const tmpProduct = state.products;
-    tmpProduct[action.idProduct].stockActual += 1;
-    return {
-      ...state,
-      products: tmpProduct,
-    };
+    newState.products = [...newState.products];
+    newState.products[action.idProduct].stockActual += 1;
+    saveState(newState);
+    return newState;
   }
 
   if (action.type === REMOVE_STOCK_ACTUAL) {
-    const tmpProduct = state.products;
-    tmpProduct[action.idProduct].stockActual -= 1;
-    return {
-      ...state,
-      products: tmpProduct,
-    };
+    newState.products = [...newState.products];
+    newState.products[action.idProduct].stockActual -= 1;
+    saveState(newState);
+    return newState;
+  }
+
+  if (action.type === REPLACE_STATE) {
+    return action.state;
   }
 };
