@@ -5,28 +5,27 @@ import Button from "../Components/Button";
 import { useState } from "react";
 import { addPrice } from "../Context/ProductReducer";
 
-export const AddPrice = ({ route }) => {
-  const [state, dispatch] = useStore();
-
-  console.log(route.params.index);
-  //  const [state] = useStore();
+export const AddPrice = ({ route, navigation }) => {
+  const [, dispatch] = useStore();
+  const [state] = useStore();
   const stores = state.stores;
 
   const [price, setPrice] = useState({
-    idProduct: route.params.index,
-    store: null,
+    idProduct: route.params.idProduct,
+    idStore: null,
     price: null,
   });
 
   const storesRadio = () => {
-    return stores.map((store) => ({
+    return stores.map((store, index) => ({
       label: store.name,
+      id: index,
     }));
   };
 
   const setStore = (store) => {
     const tmpPrice = { ...price };
-    tmpPrice.store = store.label;
+    tmpPrice.idStore = store.id;
     setPrice(tmpPrice);
   };
 
@@ -37,7 +36,8 @@ export const AddPrice = ({ route }) => {
   };
 
   const addPriceToState = () => {
-    // dispatch(addPrice(price));
+    dispatch(addPrice(price));
+    navigation.push("ProductList");
   };
 
   const data = storesRadio();

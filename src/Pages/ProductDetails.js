@@ -2,11 +2,14 @@ import { Text, View, StyleSheet } from "react-native";
 import { useState } from "react";
 import { useStore } from "../Context/Store";
 import { deleteProduct } from "../Context/ProductReducer";
+import { Store } from "../Components/Store";
 import Button from "../Components/Button";
 
 export default ProductDetails = ({ route, navigation }) => {
-  const [, dispatch] = useStore();
+  const [state, dispatch] = useStore();
   const [product, setProduct] = useState(route.params.product);
+
+  const stores = state.stores;
 
   const deleteProd = () => {
     dispatch(deleteProduct(route.params.index));
@@ -15,7 +18,8 @@ export default ProductDetails = ({ route, navigation }) => {
 
   const goToPricePage = () => {
     const index = route.params.index;
-    navigation.push("AddPrice", { index });
+    const idProduct = product.id;
+    navigation.push("AddPrice", { idProduct });
   };
 
   return (
@@ -31,6 +35,9 @@ export default ProductDetails = ({ route, navigation }) => {
             Recurrent : {product.recurrent ? "OUI" : "NON"}
           </Text>
         </View>
+      </View>
+      <View>
+        <Store stores={stores} idProduct={product.id} />
       </View>
       <View style={styles.btnContainer}>
         <Button

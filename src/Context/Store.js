@@ -5,9 +5,8 @@ const Store = createContext();
 export const useStore = () => useContext(Store);
 
 export const StoreProvider = ({ children, initialState, reducer }) => {
-  const logo = "test";
-  const [globalState, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Store.Provider value={[globalState, dispatch]}>{children}</Store.Provider>
+    <Store.Provider value={[state, dispatch]}>{children}</Store.Provider>
   );
 };

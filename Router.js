@@ -19,7 +19,7 @@ export const Router = () => {
   useEffect(() => {
     AsyncStorage.getItem("Products").then((JSONproducts) => {
       const products = JSON.parse(JSONproducts || "[]");
-
+      console.log(products);
       dispatch(replaceState(products));
     });
   }, []);

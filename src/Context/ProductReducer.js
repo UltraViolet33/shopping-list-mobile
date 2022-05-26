@@ -83,7 +83,14 @@ export const productReducer = (state = initialState, action) => {
   }
 
   if (action.type === actions.ADD_PRICE) {
-    console.log(actions.price);
+    newState.stores = [...newState.stores];
+    const newPrice = {
+      idProduct: action.price.idProduct,
+      price: action.price.price,
+    };
+    newState.stores[action.price.idStore].productPrice.push(newPrice);
+    saveState(newState);
+    return newState;
   }
 
   if (action.type === actions.REPLACE_STATE) {
