@@ -4,6 +4,7 @@ import { useStore } from "../Context/Store";
 import Button from "../Components/Button";
 import { useState } from "react";
 import { addPrice } from "../Context/ProductReducer";
+import NumericTextInput from "@wwdrew/react-native-numeric-textinput";
 
 export const AddPrice = ({ route, navigation }) => {
   const [, dispatch] = useStore();

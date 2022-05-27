@@ -88,7 +88,25 @@ export const productReducer = (state = initialState, action) => {
       idProduct: action.price.idProduct,
       price: action.price.price,
     };
-    newState.stores[action.price.idStore].productPrice.push(newPrice);
+    // newState.stores[action.price.idStore].productPrice.push(newPrice);
+
+    const test = newState.stores[action.price.idStore].productPrice.filter(
+      (product) => product.idProduct === action.price.idProduct
+    );
+
+    console.log(test);
+
+    if (test.length > 0) {
+      const index = newState.stores[
+        action.price.idStore
+      ].productPrice.findIndex(
+        (product) => product.idProduct === action.price.idProduct
+      );
+      newState.stores[action.price.idStore].productPrice[index] = newPrice;
+    } else {
+      newState.stores[action.price.idStore].productPrice.push(newPrice);
+    }
+
     saveState(newState);
     return newState;
   }

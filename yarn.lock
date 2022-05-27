@@ -1823,6 +1823,14 @@
     "@urql/core" ">=2.3.1"
     "wonka" "^4.0.14"
 
+"@wwdrew/react-native-numeric-textinput@^1.1.0":
+  "integrity" "sha512-snbDuKeO6wSFWhGUxxByayv04VSb2E9o+U0wFHBslCucvIhCqLA23wKzSqeaP4ljlShemVRfZHmoUaJOnEs2AA=="
+  "resolved" "https://registry.npmjs.org/@wwdrew/react-native-numeric-textinput/-/react-native-numeric-textinput-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "currency-codes" "^1.5.0"
+    "intl" "^1.2.5"
+
 "@xmldom/xmldom@~0.7.0":
   "integrity" "sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A=="
   "resolved" "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.7.5.tgz"
@@ -2755,6 +2763,14 @@
     "hyphenate-style-name" "^1.0.2"
     "isobject" "^3.0.1"
 
+"currency-codes@^1.5.0":
+  "integrity" "sha512-hqy8vtlIYKzO6pe2TE0V4/riZALIc7nhtE9cvxk5FDRCvfGplgzUvpTmZlMsyO+NeK5U41j+sQXJOo8l8v9kdg=="
+  "resolved" "https://registry.npmjs.org/currency-codes/-/currency-codes-1.5.1.tgz"
+  "version" "1.5.1"
+  dependencies:
+    "first-match" "~0.0.1"
+    "nub" "~0.0.0"
+
 "dag-map@~1.0.0":
   "integrity" "sha1-6DefBBAA7VYfxRVHXB7SyF7s6Nc="
   "resolved" "https://registry.npmjs.org/dag-map/-/dag-map-1.0.2.tgz"
@@ -3363,6 +3379,11 @@
   dependencies:
     "micromatch" "^4.0.2"
 
+"first-match@~0.0.1":
+  "integrity" "sha1-pg7GQnAPD0NyNOu37D84JHblQv0="
+  "resolved" "https://registry.npmjs.org/first-match/-/first-match-0.0.1.tgz"
+  "version" "0.0.1"
+
 "flow-parser@^0.121.0":
   "integrity" "sha512-1gIBiWJNR0tKUNv8gZuk7l9rVX06OuLzY9AoGio7y/JT4V1IZErEMEq2TJS+PFcw/y0RshZ1J/27VfK1UQzYVg=="
   "resolved" "https://registry.npmjs.org/flow-parser/-/flow-parser-0.121.0.tgz"
@@ -3781,6 +3802,11 @@
   dependencies:
     "default-gateway" "^4.2.0"
     "ipaddr.js" "^1.9.0"
+
+"intl@^1.2.5":
+  "integrity" "sha1-giRKIZDE5Bn4Nx9ao02qNCDiq94="
+  "resolved" "https://registry.npmjs.org/intl/-/intl-1.2.5.tgz"
+  "version" "1.2.5"
 
 "invariant@*", "invariant@^2.2.4":
   "integrity" "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA=="
@@ -5012,6 +5038,11 @@
   "version" "2.0.2"
   dependencies:
     "path-key" "^2.0.0"
+
+"nub@~0.0.0":
+  "integrity" "sha1-s2m9Mr3eZq9ZYFw7BSC8IZ3MwE8="
+  "resolved" "https://registry.npmjs.org/nub/-/nub-0.0.0.tgz"
+  "version" "0.0.0"
 
 "nullthrows@^1.1.1":
   "integrity" "sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw=="
