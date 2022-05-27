@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 import { useStore } from "../Context/Store";
 
-export default ShoppingList = () => {
+export default ShoppingList = ({ navigation }) => {
   const [state] = useStore();
-  const { products } = state;
+  const { products, stores } = state;
 
   const filterProducts = () => {
     return products.filter(
@@ -44,11 +44,53 @@ export default ShoppingList = () => {
     );
   };
 
+  const productListByStore = (store) => {
+    const productsToBuy = filterProducts();
+    let storeList;
+
+    if (store === 0) {
+      storeList = stores[0].productPrice;
+    } else {
+      storeList = stores[1].productPrice;
+    }
+
+    const storeProducts = [];
+
+    for (const product of productsToBuy) {
+      for (const price of storeList) {
+        if (product.id == price.idProduct) {
+          let productObj = {};
+          productObj.name = product.name;
+          productObj.price = price.price;
+          productObj.number = calculateNumber(product);
+          storeProducts.push(productObj);
+        }
+      }
+    }
+
+    navigation.push("ListStore", { storeProducts });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Listes des produits</Text>
         <Text>Nombre de produits à acheter : {total}</Text>
+      </View>
+      <View>
+        <Button
+          title="Liste pour Lidl"
+          onPress={() => {
+            productListByStore(0);
+          }}
+        />
+
+        <Button
+          title="Liste pour Auchan"
+          onPress={() => {
+            productListByStore(1);
+          }}
+        />
       </View>
       <ScrollView style={styles.scrolView}>
         <View>
